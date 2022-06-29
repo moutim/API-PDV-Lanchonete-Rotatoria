@@ -4,6 +4,8 @@ const routes = express.Router();
 
 const controller = require('../controllers/login.controller');
 
-routes.post('/', controller.login);
+const middlewares = require('../middlewares');
+
+routes.post('/', middlewares.validateLogin, controller.login);
 
 module.exports = routes;
