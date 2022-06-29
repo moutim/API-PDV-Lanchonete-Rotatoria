@@ -12,6 +12,19 @@ module.exports = {
       user: {
         allowNull: false,
         type: Sequelize.STRING
+      },
+      password: {
+        allowNull: false,
+        type: Sequelize.STRING
+      },
+      levelId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Permissions',
+          id: 'id'
+        },
+        onDelete: 'CASCADE',
       }
     });
   },
