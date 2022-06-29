@@ -12,9 +12,9 @@ const comparePassword = (inputPassword, dbPassword) => {
   const result = bcrypt.compareSync(inputPassword, dbPassword);
 
   return result;
-}
+};
 
 module.exports = {
   encodePassword,
-  comparePassword
+  comparePassword,
 };
