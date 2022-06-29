@@ -13,7 +13,7 @@ module.exports = {
         type: Sequelize.DATE,
         defaultValue: Sequelize.fn('now')
       },
-      employee_id: {
+      employeeId: {
         allowNull: false,
         type:Sequelize.INTEGER,
         references: {
