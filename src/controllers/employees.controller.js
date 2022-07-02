@@ -6,6 +6,12 @@ const getEmployees = async (req, res) => {
   res.status(200).json(employees);
 };
 
+const getEmployee = async (req, res) => {
+  const employee = await service.getEmployee(req.params.id);
+
+  res.status(200).json(employee);
+};
+
 const createEmployee = async (req, res) => {
   const employee = await service.createEmployee(req.body);
 
@@ -15,4 +21,5 @@ const createEmployee = async (req, res) => {
 module.exports = {
   createEmployee,
   getEmployees,
+  getEmployee,
 };
