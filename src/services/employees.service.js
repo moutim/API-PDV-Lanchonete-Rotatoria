@@ -1,12 +1,6 @@
-const bcrypt = require('bcrypt');
+const bcrypt = require('../utils/bcrypt');
 const { Employees } = require('../database/models');
-
-const createEmployee = async ({ user, password }) => {
-  const employees = await Employees.findAll();
-  const teste = bcrypt.compareSync('password', employees[0].dataValues.password);
-
-  return { user, password, employees };
-};
+const { getPermission } = require('./permissions.service');
 
 const getEmployees = async () => {
   const employees = await Employees.findAll();
@@ -26,6 +20,17 @@ const getEmployee = async (id) => {
   }
 
   return employee;
+};
+
+const createEmployee = async ({ user, password, levelId }) => {
+  await getPermission(levelId);
+
+  const encrypt = bcrypt.encodePassword(password);
+
+  const newEmployee = await Employees.create({ user, password: encrypt, levelId });
+  delete newEmployee.dataValues.password;
+
+  return newEmployee;
 };
 
 module.exports = {
