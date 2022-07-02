@@ -18,8 +18,15 @@ const createEmployee = async (req, res) => {
   res.status(201).json(employee);
 };
 
+const updateEmployee = async (req, res) => {
+  const result = await service.updateEmployee(req.params.id, req.body);
+
+  res.status(201).json(result);
+};
+
 module.exports = {
   createEmployee,
   getEmployees,
   getEmployee,
+  updateEmployee,
 };
