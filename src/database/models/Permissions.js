@@ -7,7 +7,7 @@ const permissions = (sequelize, DataTypes) => {
   );
 
   tablePermissions.associate = (models) => {
-    tablePermissions.belongsTo(models.Employees, {
+    tablePermissions.hasOne(models.Employees, {
       foreignKey: 'levelId', as: 'user'
     });
   };

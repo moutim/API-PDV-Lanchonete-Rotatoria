@@ -9,7 +9,7 @@ const employees = (sequelize, DataTypes) => {
   );
 
   tableEmployees.associate = (models) => {
-    tableEmployees.hasOne(models.Permissions, {
+    tableEmployees.belongsTo(models.Permissions, {
       foreignKey: 'levelId', as: 'level'
     });
   };
