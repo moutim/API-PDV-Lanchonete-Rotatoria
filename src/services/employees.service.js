@@ -2,15 +2,23 @@ const bcrypt = require('bcrypt');
 const { Employees } = require('../database/models');
 
 const createEmployee = async ({ user, password }) => {
-  console.log(password);
   const employees = await Employees.findAll();
-  console.log(employees[0].dataValues.password);
   const teste = bcrypt.compareSync('password', employees[0].dataValues.password);
-  console.log(teste);
+
+  return { user, password, employees };
+};
+
+const getEmployees = async () => {
+  const employees = await Employees.findAll();
+
+  if (!employees) {
+    throw new Error(JSON.stringify({ status: 404, message: 'Não existem funcionarios cadastrados.' }));
+  }
 
   return employees;
 };
 
 module.exports = {
   createEmployee,
+  getEmployees,
 };
