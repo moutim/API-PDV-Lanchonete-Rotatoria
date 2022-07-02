@@ -18,7 +18,18 @@ const getEmployees = async () => {
   return employees;
 };
 
+const getEmployee = async (id) => {
+  const employee = await Employees.findOne({ where: { id } });
+
+  if (!employee) {
+    throw new Error(JSON.stringify({ status: 404, message: 'Funcionário não encontrado.' }));
+  }
+
+  return employee;
+};
+
 module.exports = {
   createEmployee,
   getEmployees,
+  getEmployee,
 };
