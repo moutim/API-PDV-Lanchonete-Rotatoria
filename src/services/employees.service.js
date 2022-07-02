@@ -33,8 +33,29 @@ const createEmployee = async ({ user, password, levelId }) => {
   return newEmployee;
 };
 
+const updateEmployee = async (id, body) => {
+  const infos = body;
+  await getEmployee(id);
+
+  if (infos.password) {
+    infos.password = bcrypt.encodePassword(infos.password);
+  }
+
+  if (infos.levelId) {
+    await getPermission(infos.levelId);
+  }
+
+  try {
+    await Employees.update({ ...infos }, { where: { id } });
+    return { message: 'Informações atualizadas com sucesso.' };
+  } catch (e) {
+    throw new Error(JSON.stringify({ status: 500, message: e.message }));
+  }
+};
+
 module.exports = {
   createEmployee,
   getEmployees,
   getEmployee,
+  updateEmployee,
 };
