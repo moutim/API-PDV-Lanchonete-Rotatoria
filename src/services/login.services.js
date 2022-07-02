@@ -15,7 +15,11 @@ const login = async ({ user, password }) => {
 
   const token = JWT.generateToken(JSON.stringify({ user }));
 
-  return token;
+  if (employee.dataValues.levelId === 1) {
+    return { token, level: 'admin' };
+  }
+
+  return { token, level: 'worker' };
 };
 
 module.exports = {
