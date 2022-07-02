@@ -27,10 +27,13 @@ const createEmployee = async ({ user, password, levelId }) => {
 
   const encrypt = bcrypt.encodePassword(password);
 
-  const newEmployee = await Employees.create({ user, password: encrypt, levelId });
-  delete newEmployee.dataValues.password;
-
-  return newEmployee;
+  try {
+    const newEmployee = await Employees.create({ user, password: encrypt, levelId });
+    delete newEmployee.dataValues.password;
+    return newEmployee;
+  } catch (e) {
+    throw new Error(JSON.stringify({ status: 500, message: e.message }));
+  }
 };
 
 const updateEmployee = async (id, body) => {
