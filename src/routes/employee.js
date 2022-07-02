@@ -7,6 +7,8 @@ const middlewares = require('../middlewares');
 
 routes.get('/', controller.getEmployees);
 
+routes.get('/:id', controller.getEmployee);
+
 routes.post('/', middlewares.validateCreateEmployee, controller.createEmployee);
 
 module.exports = routes;
