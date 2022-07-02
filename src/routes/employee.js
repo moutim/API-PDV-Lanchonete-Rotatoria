@@ -11,4 +11,6 @@ routes.get('/:id', controller.getEmployee);
 
 routes.post('/', middlewares.validateCreateEmployee, controller.createEmployee);
 
+routes.put('/:id', controller.updateEmployee);
+
 module.exports = routes;
