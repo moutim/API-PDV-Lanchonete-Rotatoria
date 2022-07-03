@@ -8,6 +8,8 @@ const middlewares = require('../middlewares');
 
 routes.get('/', controller.getProducts);
 
+routes.get('/search', controller.getProductByName);
+
 routes.get('/:id', controller.getProduct);
 
 routes.post('/', middlewares.validateCreateProduct, controller.createProduct);
