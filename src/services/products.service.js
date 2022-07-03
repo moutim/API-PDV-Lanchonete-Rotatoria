@@ -1,4 +1,7 @@
+const Sequelize = require('sequelize');
 const { Products } = require('../database/models');
+
+const { Op } = Sequelize;
 
 const getProducts = async () => {
   const products = await Products.findAll();
@@ -51,10 +54,21 @@ const deleteProduct = async (id) => {
   }
 };
 
+const getProductByName = async (name) => {
+  const product = await Products.findAll({ where: { name: { [Op.like]: `%${name}%` } } });
+
+  if (!product) {
+    throw new Error(JSON.stringify({ status: 404, message: 'Produto não encontrado.' }));
+  }
+
+  return product;
+};
+
 module.exports = {
   getProducts,
   getProduct,
   createProduct,
   updateProduct,
   deleteProduct,
+  getProductByName,
 };
