@@ -5,9 +5,11 @@ module.exports = {
     await queryInterface.bulkInsert('Sales', [
       {
         employeeId: 1,
+        total: 14.99
       },
       {
         employeeId: 2,
+        total: 19.99
       }
     ], {});
   },
