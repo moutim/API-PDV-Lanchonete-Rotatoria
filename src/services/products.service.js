@@ -20,7 +20,17 @@ const getProduct = async (id) => {
   return product;
 };
 
+const createProduct = async ({ name }) => {
+  try {
+    const product = await Products.create({ name });
+    return product;
+  } catch (e) {
+    throw new Error(JSON.stringify({ status: 500, message: e.message }));
+  }
+};
+
 module.exports = {
   getProducts,
   getProduct,
+  createProduct,
 };
