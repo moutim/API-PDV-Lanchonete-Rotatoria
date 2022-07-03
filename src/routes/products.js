@@ -14,4 +14,6 @@ routes.post('/', middlewares.validateCreateProduct, controller.createProduct);
 
 routes.put('/:id', middlewares.validateCreateProduct, controller.updateProduct);
 
+routes.delete('/:id', controller.deleteProduct);
+
 module.exports = routes;
