@@ -30,10 +30,19 @@ const deleteProduct = async (req, res) => {
   res.status(200).json(result);
 };
 
+const getProductByName = async (req, res) => {
+  const { name } = req.query;
+
+  const product = await service.getProductByName(name);
+
+  res.status(200).json(product);
+};
+
 module.exports = {
   getProducts,
   getProduct,
   createProduct,
   updateProduct,
   deleteProduct,
+  getProductByName,
 };
