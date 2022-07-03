@@ -24,9 +24,16 @@ const updateEmployee = async (req, res) => {
   res.status(201).json(result);
 };
 
+const deleteEmployee = async (req, res) => {
+  const result = await service.deleteEmployee(req.params.id);
+
+  res.status(201).json(result);
+};
+
 module.exports = {
   createEmployee,
   getEmployees,
   getEmployee,
   updateEmployee,
+  deleteEmployee,
 };
