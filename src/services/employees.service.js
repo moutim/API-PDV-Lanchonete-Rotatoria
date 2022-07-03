@@ -3,7 +3,7 @@ const { Employees } = require('../database/models');
 const { getPermission } = require('./permissions.service');
 
 const getEmployees = async () => {
-  const employees = await Employees.findAll();
+  const employees = await Employees.findAll({ attributes: { exclude: 'password' } });
 
   if (!employees) {
     throw new Error(JSON.stringify({ status: 404, message: 'Não existem funcionarios cadastrados.' }));
@@ -13,7 +13,7 @@ const getEmployees = async () => {
 };
 
 const getEmployee = async (id) => {
-  const employee = await Employees.findOne({ where: { id } });
+  const employee = await Employees.findOne({ where: { id }, attributes: { exclude: 'password' } });
 
   if (!employee) {
     throw new Error(JSON.stringify({ status: 404, message: 'Funcionário não encontrado.' }));
@@ -56,9 +56,21 @@ const updateEmployee = async (id, body) => {
   }
 };
 
+const deleteEmployee = async (id) => {
+  await getEmployee(id);
+
+  try {
+    await Employees.destroy({ where: { id } });
+    return { message: 'Usuário deletado com sucesso.' };
+  } catch (e) {
+    throw new Error(JSON.stringify({ status: 500, message: e.message }));
+  }
+};
+
 module.exports = {
   createEmployee,
   getEmployees,
   getEmployee,
   updateEmployee,
+  deleteEmployee,
 };
