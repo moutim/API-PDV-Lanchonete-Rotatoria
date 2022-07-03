@@ -10,6 +10,17 @@ const getProducts = async () => {
   return products;
 };
 
+const getProduct = async (id) => {
+  const product = await Products.findOne({ where: { id } });
+
+  if (!product) {
+    throw new Error(JSON.stringify({ status: 404, message: 'Produto não encontrado' }));
+  }
+
+  return product;
+};
+
 module.exports = {
   getProducts,
+  getProduct,
 };
