@@ -40,9 +40,21 @@ const updateProduct = async (id, body) => {
   }
 };
 
+const deleteProduct = async (id) => {
+  await getProduct(id);
+
+  try {
+    await Products.destroy({ where: { id } });
+    return { message: 'Produto deletado com sucesso.' };
+  } catch (e) {
+    throw new Error(JSON.stringify({ status: 500, message: e.message }));
+  }
+};
+
 module.exports = {
   getProducts,
   getProduct,
   createProduct,
   updateProduct,
+  deleteProduct,
 };
