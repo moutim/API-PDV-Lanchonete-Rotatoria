@@ -5,9 +5,11 @@ module.exports = {
     await queryInterface.bulkInsert('Products', [
       {
         name: 'Prato 1',
+        price: 12.99
       },
       {
         name: 'Prato 2',
+        price: 13.99
       }
     ], {});
   },
