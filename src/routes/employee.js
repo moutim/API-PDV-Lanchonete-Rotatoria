@@ -13,4 +13,6 @@ routes.post('/', middlewares.validateCreateEmployee, controller.createEmployee);
 
 routes.put('/:id', controller.updateEmployee);
 
+routes.delete('/:id', controller.deleteEmployee);
+
 module.exports = routes;
