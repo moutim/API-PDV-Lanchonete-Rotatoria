@@ -29,8 +29,20 @@ const createProduct = async ({ name }) => {
   }
 };
 
+const updateProduct = async (id, body) => {
+  await getProduct(id);
+
+  try {
+    await Products.update({ name: body.name }, { where: { id } });
+    return { message: 'Informações atualizadas com sucesso.' };
+  } catch (e) {
+    throw new Error(JSON.stringify({ status: 500, message: e.message }));
+  }
+};
+
 module.exports = {
   getProducts,
   getProduct,
   createProduct,
+  updateProduct,
 };
