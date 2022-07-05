@@ -19,6 +19,25 @@ const getSales = async () => {
   return sales;
 };
 
+const getSale = async (id) => {
+  const sale = await Sales.findAll({
+    where: { id },
+    attributes: ['id', 'total'],
+    include: [
+      { model: Employees, as: 'employee', attributes: { exclude: 'password' } },
+      { model: PaymentTypes, as: 'payment' },
+      { model: SalesProducts, as: 'products', attributes: ['productId'] },
+    ],
+  });
+
+  if (!sale) {
+    throw new Error(JSON.stringify({ status: 404, message: 'Não existem vendas cadastradas no banco' }));
+  }
+
+  return sale;
+};
+
 module.exports = {
   getSales,
+  getSale,
 };
