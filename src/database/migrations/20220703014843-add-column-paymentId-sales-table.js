@@ -4,7 +4,12 @@ module.exports = {
   async up (queryInterface, Sequelize) {
     await queryInterface.addColumn('Sales', 'paymentId', {
       allowNull: false,
-      type: Sequelize.INTEGER
+      type: Sequelize.INTEGER,
+      references: {
+        model: 'PaymentType',
+        id: 'id'
+      },
+      onDelete: 'CASCADE',
     });
   },
 
