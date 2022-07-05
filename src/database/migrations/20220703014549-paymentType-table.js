@@ -2,7 +2,7 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.createTable('PaymentType', {
+    await queryInterface.createTable('PaymentTypes', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -17,6 +17,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.dropTable('PaymentType');
+    await queryInterface.dropTable('PaymentTypes');
   }
 };
