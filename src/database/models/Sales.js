@@ -10,11 +10,15 @@ const sales = (sequelize, DataTypes) => {
 
   tableSales.associate = (models) => {
     tableSales.hasMany(models.SalesProducts, {
-      foreignKey: 'saleId', as: 'saleProduct'
+      foreignKey: 'saleId', as: 'products'
     });
 
-    tableSales.belongsTo(models.PaymentType, {
+    tableSales.belongsTo(models.PaymentTypes, {
       foreignKey: 'paymentId', as: 'payment'
+    });
+
+    tableSales.belongsTo(models.Employees, {
+      foreignKey: 'employeeId', as: 'employee'
     });
   };
 

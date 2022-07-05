@@ -12,6 +12,10 @@ const employees = (sequelize, DataTypes) => {
     tableEmployees.belongsTo(models.Permissions, {
       foreignKey: 'levelId', as: 'level'
     });
+
+    tableEmployees.hasOne(models.Sales, {
+      foreignKey: 'employeeId', as: 'sales'
+    });
   };
 
   return tableEmployees;

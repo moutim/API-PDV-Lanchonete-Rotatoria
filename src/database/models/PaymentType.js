@@ -1,5 +1,5 @@
 const paymentType = (sequelize, DataTypes) => {
-  const tablePaymentType = sequelize.define("PaymentType", 
+  const tablePaymentType = sequelize.define("PaymentTypes", 
     {
       type: DataTypes.STRING
     },
