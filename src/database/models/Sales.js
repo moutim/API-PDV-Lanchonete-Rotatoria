@@ -1,7 +1,9 @@
 const sales = (sequelize, DataTypes) => {
   const tableSales = sequelize.define("Sales", 
     {
-      employeeId: DataTypes.INTEGER
+      employeeId: DataTypes.INTEGER,
+      total: DataTypes.FLOAT,
+      paymentId: DataTypes.INTEGER
     },
     { timestamps: false }
   );
@@ -9,6 +11,10 @@ const sales = (sequelize, DataTypes) => {
   tableSales.associate = (models) => {
     tableSales.hasMany(models.SalesProducts, {
       foreignKey: 'saleId', as: 'saleProduct'
+    });
+
+    tableSales.belongsTo(models.PaymentType, {
+      foreignKey: 'paymentId', as: 'payment'
     });
   };
 
