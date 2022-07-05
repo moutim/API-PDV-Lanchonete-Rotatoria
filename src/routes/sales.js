@@ -8,4 +8,6 @@ const controller = require('../controllers/sales.controller');
 
 routes.get('/', controller.getSales);
 
+routes.get('/:id', controller.getSale);
+
 module.exports = routes;
