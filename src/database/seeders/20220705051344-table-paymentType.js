@@ -2,7 +2,7 @@
 
 module.exports = {
   async up (queryInterface, Sequelize) {
-    await queryInterface.bulkInsert('PaymentType', [
+    await queryInterface.bulkInsert('PaymentTypes', [
       {
         type: 'debit',
       },
@@ -19,6 +19,6 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    await queryInterface.bulkDelete('PaymentType', null, {});
+    await queryInterface.bulkDelete('PaymentTypes', null, {});
   }
 };
