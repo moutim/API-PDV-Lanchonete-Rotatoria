@@ -1,9 +1,14 @@
 const bcrypt = require('../utils/bcrypt');
-const { Employees } = require('../database/models');
+const { Employees, Permissions } = require('../database/models');
 const { getPermission } = require('./permissions.service');
 
 const getEmployees = async () => {
-  const employees = await Employees.findAll({ attributes: { exclude: 'password' } });
+  const employees = await Employees.findAll(
+    {
+      include: { model: Permissions, as: 'level' },
+      attributes: { exclude: ['password', 'levelId'] },
+    },
+  );
 
   if (!employees) {
     throw new Error(JSON.stringify({ status: 404, message: 'Não existem funcionarios cadastrados.' }));
@@ -13,7 +18,13 @@ const getEmployees = async () => {
 };
 
 const getEmployee = async (id) => {
-  const employee = await Employees.findOne({ where: { id }, attributes: { exclude: 'password' } });
+  const employee = await Employees.findOne(
+    {
+      where: { id },
+      include: { model: Permissions, as: 'level' },
+      attributes: { exclude: ['password', 'levelId'] },
+    },
+  );
 
   if (!employee) {
     throw new Error(JSON.stringify({ status: 404, message: 'Funcionário não encontrado.' }));
