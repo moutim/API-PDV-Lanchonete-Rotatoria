@@ -10,4 +10,6 @@ routes.use('/employee', middlewares.validateToken, require('./employee'));
 
 routes.use('/products', middlewares.validateToken, require('./products'));
 
+routes.use('/sales', require('./sales'));
+
 module.exports = routes;
