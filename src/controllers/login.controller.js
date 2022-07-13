@@ -1,9 +1,10 @@
 const service = require('../services/login.services');
 
 const login = async (req, res) => {
+  console.log(req.body);
   const token = await service.login(req.body);
 
-  res.status(200).json(token);
+  return res.status(200).json(token);
 };
 
 module.exports = {
