@@ -1,5 +1,5 @@
 const {
-  SalesProducts, Sales, Employees, PaymentTypes, Products,
+  SalesProducts, Sales, Employees, PaymentTypes,
 } = require('../database/models');
 
 const getSales = async () => {
@@ -26,13 +26,7 @@ const getSale = async (id) => {
     include: [
       { model: Employees, as: 'employee', attributes: { exclude: 'password' } },
       { model: PaymentTypes, as: 'payment' },
-      {
-        model: SalesProducts,
-        as: 'products',
-        attributes: ['productId'],
-        required: true,
-        include: { model: Products, as: 'product', required: true },
-      },
+      { model: SalesProducts, as: 'products', attributes: ['productId'] },
     ],
   });
 
