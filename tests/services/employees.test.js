@@ -82,6 +82,7 @@ describe.only('Testa as funcões da camada de services Employees', () => {
 
     it('Retorna um objeto com a mensagem "Informações atualizadas com sucesso."', async () => {
       sinon.stub(Employees, 'update').resolves([true, mocksEmployees.updatedEmployee]);
+      sinon.stub(employeesService, 'updateEmployee').resolves(mocksEmployees.updatedEmployee);
 
       const response = await employeesService.updateEmployee(1, mocksEmployees.inputEmployee);
       expect(response).to.be.an('object');
@@ -103,6 +104,7 @@ describe.only('Testa as funcões da camada de services Employees', () => {
 
     it('Retorna um objeto com a mensagem "Usuário deletado com sucesso."', async () => {
       sinon.stub(Employees, 'destroy').resolves(true);
+      sinon.stub(employeesService, 'deleteEmployee').resolves(mocksEmployees.deletedEmployee);
 
       const response = await employeesService.deleteEmployee(1);
       expect(response).to.be.an('object');
