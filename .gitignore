@@ -44,6 +44,9 @@ Generated\ Files/
 [Tt]est[Rr]esult*/
 [Bb]uild[Ll]og.*
 
+# nyc test coverage
+.nyc_output
+
 # NUnit
 *.VisualState.xml
 TestResult.xml
