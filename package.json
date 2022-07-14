@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/**/*.js",
-    "test:mocha": "nyc mocha tests/**/*.js",
+    "test": "nyc mocha tests/**/*.js",
     "dev": "nodemon index.js",
     "start": "node index.js",
     "restore": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
