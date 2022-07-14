@@ -28,7 +28,7 @@ describe.only('Testa as funcões da camada de services Employees', () => {
     it('Retorna um erro quando não for encontrado employees no banco', async () => {
       sinon.stub(Employees, 'findAll').resolves();
 
-      await expect(employeesService.getEmployees()).to.be
+      expect(employeesService.getEmployees()).to.be
         .rejectedWith(Error, JSON.stringify(mocksEmployees.employeesNotFound));
     });
   });
@@ -50,7 +50,7 @@ describe.only('Testa as funcões da camada de services Employees', () => {
     it('Retorna um erro quando não for encontrado o employee no banco', async () => {
       sinon.stub(Employees, 'findOne').resolves();
 
-      await expect(employeesService.getEmployee()).to.be
+      expect(employeesService.getEmployee()).to.be
         .rejectedWith(Error, JSON.stringify(mocksEmployees.employeeNotFound));
     });
   });
@@ -70,7 +70,7 @@ describe.only('Testa as funcões da camada de services Employees', () => {
 
     it('Lança um erro quando não recebe os parametros corretamente', async () => {
       sinon.stub(Employees, 'create').resolves();
-      await expect(employeesService.createEmployee(mocksEmployees.inputEmployee)).to.be
+      expect(employeesService.createEmployee(mocksEmployees.inputEmployee)).to.be
         .rejectedWith(Error, JSON.stringify(mocksEmployees.employeeNotCreated));
     });
   });
@@ -91,7 +91,7 @@ describe.only('Testa as funcões da camada de services Employees', () => {
     it('Lança um erro quando não recebe os parametros corretamente', async () => {
       sinon.stub(Employees, 'update').resolves([false]);
 
-      await expect(employeesService.updateEmployee(1, mocksEmployees.inputEmployee)).to.be
+      expect(employeesService.updateEmployee(1, mocksEmployees.inputEmployee)).to.be
         .rejectedWith(Error, JSON.stringify(mocksEmployees.employeeNotUpdated));
     });
   });
@@ -112,7 +112,7 @@ describe.only('Testa as funcões da camada de services Employees', () => {
     it('Lança um erro quando não consegue deletar o usuario', async () => {
       sinon.stub(Employees, 'destroy').resolves(false);
 
-      await expect(employeesService.deleteEmployee(1)).to.be
+      expect(employeesService.deleteEmployee(1)).to.be
         .rejectedWith(Error, JSON.stringify(mocksEmployees.employeeNotDeleted));
     });
   });
