@@ -23,15 +23,13 @@ jobs:
           - name: Verifica o repositório do Git
             uses: actions/checkout@v2
 
-          - name: Inicia containers
-            run: docker-compose up -d
+          - name: Instala o node com a versão
+            uses: actions/setup-node@v1
+            with:
+              node-version: 14
 
           - name: Instala as dependências
             run: npm install
 
           - name: Executa todos os testes
             run: npm test
-
-          - name: Para os containers
-            if: always()
-            run: docker-compose -f "docker-compose.yml" down
