@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "mocha tests/**/*.js",
-    "test:mocha": "nyc mocha tests/**/*.js",
+    "test": "nyc mocha tests/**/*.js",
     "dev": "nodemon index.js",
     "start": "node index.js",
     "restore": "npx sequelize db:drop && npx sequelize db:create && npx sequelize db:migrate && npx sequelize db:seed:all"
@@ -23,6 +22,7 @@
   "homepage": "https://github.com/moutim/PDV-Lanchonete-Rotatoria#readme",
   "dependencies": {
     "bcrypt": "^5.0.1",
+    "chai-as-promised": "^7.1.1",
     "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
