@@ -34,6 +34,9 @@ jobs:
           - name: Executa todos os testes
             run: npm test
 
+          - name: Executa Sequelize
+            run: npm run restore
+
           - name: Para os containers
             if: always()
             run: docker-compose -f "docker-compose.yml" down
