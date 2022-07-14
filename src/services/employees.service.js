@@ -43,7 +43,7 @@ const createEmployee = async ({ user, password, levelId }) => {
     delete newEmployee.dataValues.password;
     return newEmployee;
   } catch (e) {
-    throw new Error(JSON.stringify({ status: 500, message: e.message }));
+    throw new Error(JSON.stringify({ status: 500, message: 'Ocorreu algum erro ao criar o funcionário.' }));
   }
 };
 
@@ -59,23 +59,25 @@ const updateEmployee = async (id, body) => {
     await getPermission(infos.levelId);
   }
 
-  try {
-    await Employees.update({ ...infos }, { where: { id } });
-    return { message: 'Informações atualizadas com sucesso.' };
-  } catch (e) {
-    throw new Error(JSON.stringify({ status: 500, message: e.message }));
+  const result = await Employees.update({ ...infos }, { where: { id } });
+
+  if (!result[0]) {
+    throw new Error(JSON.stringify({ status: 500, message: 'Ocorreu algum erro ao atualizar o funcionário.' }));
   }
+
+  return { message: 'Informações atualizadas com sucesso.' };
 };
 
 const deleteEmployee = async (id) => {
   await getEmployee(id);
 
-  try {
-    await Employees.destroy({ where: { id } });
-    return { message: 'Usuário deletado com sucesso.' };
-  } catch (e) {
-    throw new Error(JSON.stringify({ status: 500, message: e.message }));
+  const result = await Employees.destroy({ where: { id } });
+
+  if (!result) {
+    throw new Error(JSON.stringify({ status: 500, message: 'Ocorreu algum erro ao deletar o funcionário.' }));
   }
+
+  return { message: 'Usuário deletado com sucesso.' };
 };
 
 module.exports = {
