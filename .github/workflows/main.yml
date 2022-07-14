@@ -19,6 +19,8 @@ jobs:
           run: npx eslint .
   tests:
       runs-on: ubuntu-latest
+      env:
+        HOSTNAME: '172.18.0.1'
       steps:
           - name: Verifica o repositório do Git
             uses: actions/checkout@v2

@@ -37,7 +37,6 @@ services:
       MYSQL_PASSWORD: password
       MYSQL_HOST: db # Nome do service logo abaixo
       PORT: '3000'
-      HOSTNAME: 'localhost'
 
   # Serviço que irá rodar o banco de dados
   db:
